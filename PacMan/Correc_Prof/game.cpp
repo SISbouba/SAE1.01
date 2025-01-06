@@ -5,55 +5,94 @@
 #include "gridmanagement.h"
 
 #include <map>
-using namespace std;
-template <class T, class U>
-void ShowMap (const map<T,U> & AMap){
-    for (const pair <T,U> & Val : AMap)                cout << "Cle : " << Val.first << "   "             << "Valeur : " << Val.second << endl;
-    cout << endl;
-}// ShowMap ()
 
-void MoveToken (CMat & Mat, const char & Move, CPosition & Pos)
+using namespace std;
+
+
+void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition & PosMur, const CPosition & PosTp, const CPosition & PosTp2)
 {
     char car = Mat [Pos.first][Pos.second];
     Mat [Pos.first][Pos.second] = KEmpty;
+
+    //variable pour stocker les nouvelles position
+    int ligne = Pos.first;
+    int colonne = Pos.second;
+
     switch (Move)
     {
     case 'A':
-        -- Pos.first;
-        -- Pos.second;
+        -- ligne;
+        -- colonne;
         break;
     case 'Z':
-        --Pos.first;
+        --ligne;
         break;
     case 'E':
-        --Pos.first;
-        ++Pos.second;
+        --ligne;
+        ++colonne;
         break;
     case 'Q':
-        --Pos.second;
+        --colonne;
         break;
     case 'D':
-        ++Pos.second;
+        ++colonne;
         break;
     case 'W':
-        ++Pos.first;
-        --Pos.second;
+        ++ligne;
+        --colonne;
         break;
     case 'X':
-        ++Pos.first;
+        ++ligne;
         break;
     case 'C':
-        ++Pos.first;
-        ++Pos.second;
+        ++ligne;
+        ++colonne;
         break;
     }
-    Mat [Pos.first][Pos.second] = car;
-} //MoveToken ()
+    //ça vérifie les limite de la map de jeu
+    if (ligne >= 0 && ligne < Mat.size() && colonne >= 0 && colonne < Mat[0].size())
+    {
+        // Vérifie si le joueur se déplace sur un mur
+        if (Mat[ligne][colonne] == '=')
+        {
+            // Restaure la position précédente si c'est un mur
+            Mat[Pos.first][Pos.second] = car; // Restaure la position précédente
+            return; // Ne fait rien d'autre
+        }
+
+        // Vérifie si le joueur se déplace sur un téléporteur
+        if (Mat[ligne][colonne] == 'T')
+        {
+            // Téléporte le joueur à l'autre téléporteur
+            if (Pos == PosTp) // Si le joueur est sur le premier téléporteur
+            {
+                Pos.first = PosTp2.first;
+                Pos.second = PosTp2.second;
+            }
+            else // Si le joueur est sur le deuxième téléporteur
+            {
+                Pos.first = PosTp.first;
+                Pos.second = PosTp.second;
+            }
+        }
+        else
+        {
+            // Déplace le jeton normalement
+            Pos.first = ligne;
+            Pos.second = colonne;
+        }
+        Mat[Pos.first][Pos.second] = car; // Déplace le jeton
+    }
+    else
+    {
+       // Si le mouvement est en dehors des limites, restaure la position précédente
+        Mat[Pos.first][Pos.second] = car;
+    }
+} // MoveToken ()
 
 
 int ppal (void)
 {
-
     const unsigned KSize (10);
     unsigned PartyNum (1);
     const unsigned KMaxPartyNum (KSize * KSize);
@@ -62,47 +101,49 @@ int ppal (void)
     bool Player1Turn (true);
     bool Victory (false);
 
-    CPosition PosPlayer1, PosPlayer2;
-    CMyParam myParams;
-    initParams (myParams);
-    //InitGrid(Mat, 10, 10, PosPlayer1, PosPlayer2);
-    InitGrid(Mat, myParams);
-    DisplayGrid (Mat);
+    CPosition PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2;
 
-    while (PartyNum <= KMaxPartyNum && ! Victory)
+    CMyParamV2 param;
+
+    initParams (param);
+
+    InitGrid(Mat, 10, 10, PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2);
+
+    DisplayGrid(Mat, param);
+
+    while (PartyNum <= KMaxPartyNum && !Victory)
     {
-
-        cout << "tour numero : " << PartyNum << ", Joueur"
-             << (Player1Turn ? '1' : '2') << ", entrez un déplacement : ";
-
+        cout << "Tour numéro : " << PartyNum << ", Joueur "
+             << (Player1Turn ? '1' : '2') << ", Bonne chance : ";
         char Move;
         cin >> Move;
-
-        Move = toupper (Move);
-        MoveToken (Mat, Move, (Player1Turn ? PosPlayer1: PosPlayer2));
+        // Vérifiez si le joueur a choisi d'abandonner
+        if (toupper(Move) == 'S') {
+            cout << "La partie est terminée par abandon." << endl;
+            cout << "Félicitations Joueur " << (Player1Turn ? '2' : '1') << ", vous avez gagné !" << endl;
+            return 0; // Terminez le programme
+        }
+        Move = toupper(Move);
+        MoveToken(Mat, Move, (Player1Turn ? PosPlayer1 : PosPlayer2), PosMur, PosTp, PosTp2); // Passer les positions des téléporteurs
         ClearScreen();
-        DisplayGrid (Mat);
-
-        //Victiry test
+        DisplayGrid(Mat, param);
+        // Test de victoire
         if (PosPlayer1 == PosPlayer2) Victory = true;
-
-        //Increase party's number
+        // Augmenter le nombre de parties
         ++PartyNum;
-
-        //Player changing
+        // Changer de joueur
         Player1Turn = !Player1Turn;
-    }//while (no victory)
-
+    } // while (no victory)
     if (!Victory)
     {
         Color (KColor.find("KMAgenta")->second);
         cout << "Aucun vainqueur" << endl;
         return 1;
     }
-
     Color (KColor.find("KGreen")->second);
-    cout << "Félicitations Joueur" << (Player1Turn ? '2' : '1')
+    cout << "Félicitations Joueur " << (Player1Turn ? '2' : '1')
          << " vous avez gagné :)" << endl;
     Color (KColor.find("KReset")->second);
     return 0;
-} //ppal ()
+
+} // ppal ()
