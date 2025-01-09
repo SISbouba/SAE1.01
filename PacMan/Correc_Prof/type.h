@@ -13,7 +13,6 @@
 #include <vector>
 #include <map>
 
-
 /**
  * @brief CVLine : alias to a line of the matrix
  */
@@ -28,7 +27,7 @@ typedef std::vector <CVLine> CMat;
 /**
  * @brief CPosition : a pair gathering the coordinates in the grid
  */
-typedef std::pair <size_t, size_t> CPosition;
+typedef std::pair <unsigned, unsigned> CPosition;
 
 
 
@@ -54,42 +53,34 @@ const AuthorizedKey KAuthorizedKey;
   */
 
 const std::map <std::string, std::string> KColor
-    {
-     {"KReset", "0"},
-     {"KBlack", "30"},
-     {"KRed", "31"},
-     {"KGreen", "32"},
-     {"KYellow", "33"},
-     {"KBlue", "34"},
-     {"KMAgenta", "35"},
-     {"KCyan", "36"},
+{
+  {"KReset", "0"},
+  {"KBlack", "30"},
+  {"KRed", "31"},
+  {"KGreen", "32"},
+  {"KYellow", "33"},
+  {"KBlue", "34"},
+  {"KMAgenta", "35"},
+  {"KCyan", "36"},
 
-     };
+};
+
+struct CMyParamV2{
+    char tokenP1 = 'X';
+    char tokenP2 = 'Y';
+    char KeyUp = 'z';
+    char KeyDown = 's';
+    char KeyLeft = 'q';
+    char KeyRight = 'd';
+    std::size_t NbColumn = (10);
+    std::size_t NbRow = (10);
+    std::string ColorP1 = KColor.find("KBlue")->second;
+    std::string ColorP2 = KColor.find("KGreen")->second;
+};
 
 /**
  * @brief KEmpty : character for an empty cell
  */
-const char KEmpty        = ' ';
-
-struct CMyParam {
-    std::map <std::string, char> MapParamChar;
-    std::map <std::string, unsigned> MapParamUnsigned;
-    std::map <std::string, std::string> MapParamString;
-};
-
-struct CMyParamV2{
-    char tokenP1 =  ('X');
-    char tokenP2  = ('Y');
-    char KeyUp = ('z');
-    char KeyDown = ('s');
-    char KeyLeft = ('q');
-    char KeyRight = ('d');
-    std::size_t NbColumn = (10);
-    std::size_t NbRow = (10);
-    std::string ColorP1 = KColor.find("Blue")->second;
-    std::string ColorP2 =  KColor.find("Green")->second;
-
-};
-
+const char KEmpty= '.';
 
 #endif // TYPE_H
