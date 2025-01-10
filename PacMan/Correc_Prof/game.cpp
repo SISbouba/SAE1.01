@@ -52,32 +52,32 @@ void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition 
     //ça vérifie les limite de la map de jeu
     if (ligne >= 0 && ligne < Mat.size() && colonne >= 0 && colonne < Mat[0].size())
     {
-        // Vérifie si le joueur se déplace sur un mur
+        // Si le joueur va sur un mur
         if (Mat[ligne][colonne] == '=')
         {
-            // Restaure la position précédente si c'est un mur
-            Mat[Pos.first][Pos.second] = car; // Restaure la position précédente
-            return; // Ne fait rien d'autre
+            // Ancienne position si ya un mur
+            Mat[Pos.first][Pos.second] = car; // Va a l'ancienne position
+            return; // 
         }
-        // Vérifie si le joueur se déplace sur un mur
+        // Si le joueur va sur un mur
         if (Mat[ligne][colonne] == 'I')
         {
-            // Restaure la position précédente si c'est un mur
-            Mat[Pos.first][Pos.second] = car; // Restaure la position précédente
-            return; // Ne fait rien d'autre
+            // Ancienne position si ya un mur
+            Mat[Pos.first][Pos.second] = car; // Va a l'ancienne position
+            return; // 
         }
 
 
-        // Vérifie si le joueur se déplace sur un téléporteur
+        // Si le joueur va sur un tp
         if (Mat[ligne][colonne] == 'T')
         {
-            // Téléporte le joueur à l'autre téléporteur
-            if (Pos == PosTp) // Si le joueur est sur le premier téléporteur
+            // Aller a l'autre téléporteur
+            if (Pos == PosTp) // tp1
             {
                 Pos.first = PosTp2.first;
                 Pos.second = PosTp2.second;
             }
-            else if (Pos == PosTp2) // Si le joueur est sur le deuxième téléporteur
+            else if (Pos == PosTp2) // tp2
             {
                 Pos.first = PosTp.first;
                 Pos.second = PosTp.second;
@@ -85,15 +85,15 @@ void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition 
         }
         else
         {
-            // Déplace le jeton normalement
+            // Deplacement joueur
             Pos.first = ligne;
             Pos.second = colonne;
         }
-        Mat[Pos.first][Pos.second] = car; // Déplace le jeton
+        Mat[Pos.first][Pos.second] = car; // Déplacement joueur
     }
     else
     {
-       // Si le mouvement est en dehors des limites, restaure la position précédente
+       // Si on quitte le terrain alors on revient a notre ancienne position
         Mat[Pos.first][Pos.second] = car;
     }
 } // MoveToken ()
