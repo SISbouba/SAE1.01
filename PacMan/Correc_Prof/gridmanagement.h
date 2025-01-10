@@ -34,7 +34,7 @@ void Color (const std::string & Col);
  * @param[in] Params : : List of usefull parameters
  * @fn void DisplayGrid (const CMat & Mat, const CMyParam & Params, bool ShowLineNumber = true, bool ShowColor = true);
  */
-void DisplayGrid (const CMat & Mat);
+void DisplayGrid (const CMat & Mat, const CMyParamV2 & param);
 
 
 /*!
@@ -45,8 +45,7 @@ void DisplayGrid (const CMat & Mat);
  * \param[out] PosPlayer2 position of the second player's token in Mat
  * @fn void InitGrid (CMat & Mat, const CMyParam & Params, CPosition & PosPlayer1, CPosition & PosPlayer2);
  */
-void InitGrid (CMat & Mat, unsigned NbLine, unsigned NbColumn, CPosition & PosPlayer1, CPosition & PosPlayer2, const CMyParam & myParam);
+void InitGrid (CMat & Mat, unsigned NbLine, unsigned NbColumn, CPosition & PosPlayer1, CPosition & PosPlayer2, CPosition & PosMur, CPosition & PosTp, CPosition & PosTp2);
 
-
-void InitGrid(CMat &Mat, const CMyParam &myParam);
 #endif // GRIDMANAGEMENT_H
+
