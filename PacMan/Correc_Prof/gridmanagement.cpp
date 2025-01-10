@@ -50,6 +50,11 @@ void DisplayGrid (const CMat & Mat, const CMyParamV2 & param)
                 cout << c;
                 Color (KColor.find("KReset")->second);
                 break;
+            case 'I':
+                Color (KColor.find("KMAgenta")->second);
+                cout << c;
+                Color (KColor.find("KReset")->second);
+                break;
             case 'T':
                 Color (KColor.find("KOrange")->second);
                 cout << c;
@@ -109,6 +114,116 @@ void InitGrid (CMat & Mat, unsigned NbLine, unsigned NbColumn, CPosition & PosPl
     Mat [PosMur.first][PosMur.second] = '=';
     PosMur.first = 7;
     PosMur.second = NbColumn -10;
+    Mat [PosMur.first][PosMur.second] = '=';
+
+    PosMur.first = 9;
+    PosMur.second = NbColumn -15;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 8;
+    PosMur.second = NbColumn -15;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 6;
+    PosMur.second = NbColumn -15;
+    Mat [PosMur.first][PosMur.second] = '=';
+
+    PosMur.first = 2;
+    PosMur.second = NbColumn -8;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 3;
+    PosMur.second = NbColumn -8;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 4;
+    PosMur.second = NbColumn -8;
+    Mat [PosMur.first][PosMur.second] = 'I';
+
+    PosMur.first = 5;
+    PosMur.second = NbColumn -15;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 5;
+    PosMur.second = NbColumn -18;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 5;
+    PosMur.second = NbColumn -17;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 5;
+    PosMur.second = NbColumn -16;
+    Mat [PosMur.first][PosMur.second] = '=';
+
+    PosMur.first = 1;
+    PosMur.second = NbColumn -1;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -2;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -3;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -4;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -5;
+    Mat [PosMur.first][PosMur.second] = '=';
+
+    PosMur.first = 1;
+    PosMur.second = NbColumn -7;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -8;
+    Mat [PosMur.first][PosMur.second] = '=';
+
+    PosMur.first = 4;
+    PosMur.second = NbColumn -12;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 0;
+    PosMur.second = NbColumn -12;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -12;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 2;
+    PosMur.second = NbColumn -12;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 3;
+    PosMur.second = NbColumn -12;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 4;
+    PosMur.second = NbColumn -11;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 0;
+    PosMur.second = NbColumn -11;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -11;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 2;
+    PosMur.second = NbColumn -11;
+    Mat [PosMur.first][PosMur.second] = 'I';
+    PosMur.first = 3;
+    PosMur.second = NbColumn -11;
+    Mat [PosMur.first][PosMur.second] = 'I';
+
+    PosMur.first = 1;
+    PosMur.second = NbColumn -14;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -15;
+    Mat [PosMur.first][PosMur.second] = '=';
+
+    PosMur.first = 1;
+    PosMur.second = NbColumn -19;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -18;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -17;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -21;
+    Mat [PosMur.first][PosMur.second] = '=';
+    PosMur.first = 1;
+    PosMur.second = NbColumn -20;
     Mat [PosMur.first][PosMur.second] = '=';
 }//InitMat ()
 
