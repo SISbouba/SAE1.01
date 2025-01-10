@@ -69,7 +69,7 @@ void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition 
                 Pos.first = PosTp2.first;
                 Pos.second = PosTp2.second;
             }
-            else // Si le joueur est sur le deuxième téléporteur
+            else if (Pos == PosTp2) // Si le joueur est sur le deuxième téléporteur
             {
                 Pos.first = PosTp.first;
                 Pos.second = PosTp.second;
@@ -107,7 +107,7 @@ int ppal (void)
 
     initParams (param);
 
-    InitGrid(Mat, 10, 10, PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2);
+    InitGrid(Mat, 20, 50, PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2);
 
     DisplayGrid(Mat, param);
 
