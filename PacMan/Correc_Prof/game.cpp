@@ -107,7 +107,7 @@ int ppal (void)
 
     initParams (param);
 
-    InitGrid(Mat, 20, 50, PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2);
+    InitGrid(Mat, 10, 21, PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2);
 
     DisplayGrid(Mat, param);
 
