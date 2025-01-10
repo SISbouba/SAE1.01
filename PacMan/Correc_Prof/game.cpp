@@ -147,3 +147,17 @@ int ppal (void)
     return 0;
 
 } // ppal ()
+
+void Marteau (CMat & Mat, const CPosition & PosMur)
+{
+    //Utilisation du Mateau
+    cout << "Activation du Marteau."<<endl;
+    //Verifie si il y a un mur autour du joueur
+    if(Mat[PosMur.first][PosMur.second] == '=' & Mat [PosMur.first][PosMur.second] = 'I'){
+        Mat [PosMur.first][PosMur.second] =KEmpty;//Détruit le mur
+        cout << "Mur détruit en position("<<PosMur.first<<", "<<PosMur.second<<")."<<endl;
+    }
+    else {
+            cout << "Aucun mur à détruit en position("<<PosMur.first<<", "<<PosMur.second<<")."<<endl;
+    }
+}
