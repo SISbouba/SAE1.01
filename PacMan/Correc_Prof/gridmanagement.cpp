@@ -56,7 +56,12 @@ void DisplayGrid (const CMat & Mat, const CMyParamV2 & param)
                 Color (KColor.find("KReset")->second);
                 break;
             case 'T':
-                Color (KColor.find("KOrange")->second);
+                Color (KColor.find("KCyan")->second);
+                cout << c;
+                Color (KColor.find("KReset")->second);
+                break;
+            case '0':
+                Color (KColor.find("KYellow")->second);
                 cout << c;
                 Color (KColor.find("KReset")->second);
                 break;
@@ -68,7 +73,7 @@ void DisplayGrid (const CMat & Mat, const CMyParamV2 & param)
 }// ShowMatrix ()
 
 
-void InitGrid (CMat & Mat, unsigned NbLine, unsigned NbColumn, CPosition & PosPlayer1, CPosition & PosPlayer2, CPosition & PosMur, CPosition & PosTp, CPosition & PosTp2)
+void InitGrid (CMat & Mat, unsigned NbLine, unsigned NbColumn, CPosition & PosPlayer1, CPosition & PosPlayer2, CPosition & PosMur, CPosition & PosTp, CPosition & PosTp2, CPosition & PosPiece)
 {
     Mat.resize (NbLine);
     const CVLine KLine (NbColumn, KEmpty);
@@ -81,6 +86,16 @@ void InitGrid (CMat & Mat, unsigned NbLine, unsigned NbColumn, CPosition & PosPl
     PosPlayer2.first = NbLine - 1;
     PosPlayer2.second =0;
     Mat [PosPlayer2.first][PosPlayer2.second]   = 'O';
+
+    PosPiece.first = 0;
+    PosPiece.second = NbColumn -20;
+    Mat [PosPiece.first][PosPiece.second] = '0';
+    PosPiece.first = 5;
+    PosPiece.second = NbColumn -9;
+    Mat [PosPiece.first][PosPiece.second] = '0';
+    PosPiece.first = 9;
+    PosPiece.second = NbColumn -1;
+    Mat [PosPiece.first][PosPiece.second] = '0';
 
     PosTp.first = 5;
     PosTp.second = NbColumn -7;
