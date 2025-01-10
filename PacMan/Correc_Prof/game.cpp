@@ -57,14 +57,14 @@ void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition 
         {
             // Ancienne position si ya un mur
             Mat[Pos.first][Pos.second] = car; // Va a l'ancienne position
-            return; // 
+            return; 
         }
         // Si le joueur va sur un mur
         if (Mat[ligne][colonne] == 'I')
         {
             // Ancienne position si ya un mur
             Mat[Pos.first][Pos.second] = car; // Va a l'ancienne position
-            return; // 
+            return; 
         }
 
 
@@ -125,11 +125,11 @@ int ppal (void)
              << (Player1Turn ? '1' : '2') << ", Bonne chance : ";
         char Move;
         cin >> Move;
-        // Vérifiez si le joueur a choisi d'abandonner
+        // Le joueur abandonne ?
         if (toupper(Move) == 'S') {
             cout << "La partie est terminée par abandon." << endl;
             cout << "Félicitations Joueur " << (Player1Turn ? '2' : '1') << ", vous avez gagné !" << endl;
-            return 0; // Terminez le programme
+            return 0; // Fin du game
         }
         Move = toupper(Move);
         MoveToken(Mat, Move, (Player1Turn ? PosPlayer1 : PosPlayer2), PosMur, PosTp, PosTp2); // Passer les positions des téléporteurs
