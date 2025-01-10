@@ -81,6 +81,6 @@ struct CMyParamV2{
 /**
  * @brief KEmpty : character for an empty cell
  */
-const char KEmpty= '.';
+const char KEmpty        = ' ';
 
 #endif // TYPE_H
