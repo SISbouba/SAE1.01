@@ -59,6 +59,14 @@ void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition 
             Mat[Pos.first][Pos.second] = car; // Restaure la position précédente
             return; // Ne fait rien d'autre
         }
+        // Vérifie si le joueur se déplace sur un mur
+        if (Mat[ligne][colonne] == 'I')
+        {
+            // Restaure la position précédente si c'est un mur
+            Mat[Pos.first][Pos.second] = car; // Restaure la position précédente
+            return; // Ne fait rien d'autre
+        }
+
 
         // Vérifie si le joueur se déplace sur un téléporteur
         if (Mat[ligne][colonne] == 'T')
