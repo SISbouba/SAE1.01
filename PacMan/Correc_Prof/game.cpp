@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition & PosMur, const CPosition & PosTp, const CPosition & PosTp2)
+void MoveToken (CMat & Mat, const char & Move, CPosition & Pos, const CPosition & PosMur, const CPosition & PosTp, const CPosition & PosTp2, const CPosition & PosPiece)
 {
     char car = Mat [Pos.first][Pos.second];
     Mat [Pos.first][Pos.second] = KEmpty;
@@ -109,13 +109,13 @@ int ppal (void)
     bool Player1Turn (true);
     bool Victory (false);
 
-    CPosition PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2;
+    CPosition PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2, PosPiece;
 
     CMyParamV2 param;
 
     initParams (param);
 
-    InitGrid(Mat, 10, 21, PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2);
+    InitGrid(Mat, 10, 21, PosPlayer1, PosPlayer2, PosMur, PosTp, PosTp2, PosPiece);
 
     DisplayGrid(Mat, param);
 
