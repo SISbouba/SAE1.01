@@ -19,8 +19,7 @@
  * @param[out] Param : List of usefull parameters
  * @fn void InitParams (CMyParam & Param);
  */
-void initParams (CMyParam & Param);
-void initParamsV2 (CMyParamV2 & Param);
+
 
 /**
  * @brief Load the set of parameters from a YAML file
@@ -29,5 +28,14 @@ void initParamsV2 (CMyParamV2 & Param);
  * @fn void LoadParams (CMyParam & Param);
  * @return 0 if everything is OK, return 2 if it can't load the file
  */
+
+class Params
+{
+public:
+    Params();
+};
+
+void initParams (CMyParamV2 & Param);
+
 
 #endif // PARAMS_H
